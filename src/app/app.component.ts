@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PokemonModelService } from './model/pokemon-model.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PokeExplorer';
+  test = new PokemonModelService (2);
 }
