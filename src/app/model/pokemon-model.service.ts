@@ -12,11 +12,13 @@ export class PokemonModelService {
   promiseResult: Promise<any>;
   data: any
   subject: BehaviorSubject<any>;
+  error: string = "";
+  
   constructor() {
     this.pokemonId = 1;
     this.promiseResult = this.fetchAPI();
     this.data;
-    this.subject = new BehaviorSubject(this.data);
+    this.subject = new BehaviorSubject(this);
   }
 
   addObserver(obs: any){
@@ -24,7 +26,7 @@ export class PokemonModelService {
   }
 
   notifyObservers() {
-    this.subject.next(this.data);
+    this.subject.next(this);
   }
 
   setPokemonId(id: number){
@@ -36,13 +38,13 @@ export class PokemonModelService {
     this.notifyObservers();
   }
 
-  getPokemonDetails() {
-    return this.data;
-  }
-
   fetchAPI() {
-    return fetch("https://pokeapi.co/api/v2/pokemon/" + this.pokemonId).then(response=> this.data = response.json()).then(d => this.data = d).then(() => this.notifyObservers()).catch(error => console.log(error))
-  
+    this.data = null;
+    return fetch("https://pokeapi.co/api/v2/pokemon/" + this.pokemonId)
+            .then(response => this.data = response.json())
+            .then(d => this.data = d, e => this.error = e)
+            .then(() => this.notifyObservers())
+            .catch(error => console.log(error))
   }
 }
 

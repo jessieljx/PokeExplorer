@@ -1,4 +1,12 @@
-<div>
+<div *ngIf="!promiseNoData(); else loading">
 	<h1>{{data.id}} {{data.name}}</h1>
 	<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{data.id}}.png" height={200} />
+</div>
+
+<ng-template #loading>
+	<img src="https://www.csc.kth.se/~cristi/loading.gif" />
+</ng-template>
+
+<div *ngIf="error">
+	<h1>{{error}}</h1>
 </div>
