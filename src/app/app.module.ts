@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonComponent } from './views/pokemon/pokemon.component';
 import { NumberEditorComponent } from './views/number-editor/number-editor.component';
+import { PokemonModelService } from './model/pokemon-model.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,10 @@ import { NumberEditorComponent } from './views/number-editor/number-editor.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [PokemonModelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

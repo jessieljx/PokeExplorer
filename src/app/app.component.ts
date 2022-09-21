@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PokemonModelService } from './model/pokemon-model.service';
 
 @Component({
@@ -8,5 +8,4 @@ import { PokemonModelService } from './model/pokemon-model.service';
 })
 export class AppComponent {
   title = 'PokeExplorer';
-  test = new PokemonModelService (2);
 }
