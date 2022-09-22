@@ -21,10 +21,6 @@ export class PokemonModelService {
     this.subject = new BehaviorSubject(this);
   }
 
-  addObserver(obs: any){
-    this.subject.subscribe(obs);
-  }
-
   notifyObservers() {
     this.subject.next(this);
   }
